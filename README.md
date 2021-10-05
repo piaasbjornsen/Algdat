@@ -1,6 +1,6 @@
 markdown
 # Rotfaste trestrukturer 
-## Binære heap 
+## Binære heap - Kap. 6 Heapsort
 Den binære heap datastrukturen er en liste som vi kan se på som et nesten komplett binærtre. Hver node i treet korresponderer til et element i listen. Treet er helt fylt i alle nivåer, med (mulig) unntak av det laveste nivået, som er fylt fra venstre mot høyre. 
 
 En binær heap er et komplett binnært tre, med noen ekstre egenskaper, kjent som heap egenskaper. Det finnes to forskjellige varianter av heaps; *max-heap* og *min-heap*. Egenskapene til heapen kommer an på hvilken type det er, og er videre forklart under. 
@@ -76,6 +76,117 @@ For å bygge en heap med max-heap egenskapen, kaller vi på prosedyren MAX-HEAPI
 * `T(n) ≤ T(2n/3) + θ(1)`, som med master teoremet gir `T(n) = O(log n)`
 * Alternativt kan vi karakterisere kjøretiden på en node med høyde h som O(h)
 
-## Bygging av heaps
-Vi kan bruke *MAX_HEAPIFY* på en bottomup måte for å konvertere en liste 
+### Bygging av heaps
+Vi kan bruke *MAX_HEAPIFY* på en bottomup måte for å konvertere en liste `A[0, ... , n-1]`, hvor `n = A.length`, til en max-heap. Elementene i liten `A[(⌊n/2⌋+1), ... ,n]` er alle blader i treet, og alle er til å begynne med en 1-element heap. 
+
+Prosedyren *BUILD-MAX-HEAP* går igjennom de resterende nodene av treet og kjører *MAX-HEAPIFY* på hver node. 
+
+```Java
+BUILD-MAX-HEAP(A)
+1   A.heap-size = A.length 
+2   for i = ⌊A.heapsize/2⌋ downto 1
+3       MAX-HEAPIFY(A, i);
+```
+
+**Kjøretid**:
+* Vi kan regne ut en øvre grense for kjøretiden til *BUIL-MAX-HEAP* som følger:
+  *  Hvert kall på *MAX-HEAPIFY* koster O(log n), og *BUILD-MAX-HEAP* gjør `O(n)` slike kall.
+  *  Derfor blir kjøretiden `O( n log n)`. Det er en øvre grense, men ikke asymptotisk bundet.
+  *  Vi kan sette en grense på kjøretiden til *BUILD-MAX-HEAP* som `O(n)`da vi ser på høyden til nodene vi kaller *MAX-HEAPIFY* på. 
+
+### Heapsort
+Heapssort-algoritmen starter med å bygge en max-heap av input `A[1, ... , n]`. Siden det største elementet nå ligger som roten `A[1]` (definisjonen av max-heap), kan vi putte den i sin endelige posisjon ved å bytte den med `A[n]` (siste element i arrayen). Hvis vi nå ser bort fra node *n* i heapen, så kan vi enkelt deinkrementere. A.heap-size. 
+
+```java
+HEAPSORT(A)
+1   BUILD-MAX-HEAP(A)
+2   for i = A.length down to 2      
+3       exchange A[1] with A[i]
+4       A.heapsize -= 1
+5       MAX-HEAPIFY(A,1)
+```
+**Kjøretid**:
+* Heapsort prosedyren bruker `O(n log n)`tid siden kallet på *BUILD-MAX-HEAP* tar `O(n)`tid og hvert av de `n-1` kallene tar `O(log n)` tid. 
+
+### Prioritetskø
+
+En av de mest populære brukene av heaps er å bruke det som en effektiv prioriteringskø. Akkurat som heaps, kommer prioritetskøer i to former; min og max. 
+
+En prioriteringskø er er en datastruktur som opprettholder et set *S* av elementer, som alle har hver sin verdi, key. En *max-prioriteringskø* støtter følgende operasjoner:
+
+* `INSERT(S, x)`setter inn et elemnt x i settet *S* som er ekvivalent til operasjon `S = S ∪ {x}`
+* `MAXIMUM(S)`returnerer elementet i *S* med størst key
+* `EXTRACT-MAX(S)` fjerner og returenerer elementet i *S* med størst key
+* `INCREASE-KEY(S,x,k)`øker verdiene til elementet *x* sin key til den nye verdien *k*, som antas å være større enn *x* nåverdende key. 
+
+*En min-prioritetskø støttet operasjonene* `INSERT(S, k)`, `MINIMUM(S)`, `EXTRACT-MIN(S)` og `DECREASE-KEY(S,x,k)`.
+
+```Java
+HEAP-MAXIMUM(A)
+1   return A[1]  
+```
+* Kjøretid: `θ(1)`
+
+```Java
+HEAP-EXTRACT-MAX(A)
+1   if A.heap-size < 1
+2       error "heap underflow"
+3   max = A[1]
+4   A[1] = A[A.heap-size]
+5   A.heap-size -= 1
+6   MAX-HEAPIFY(A,1)
+7   return max 
+```
+* Kjøretid: `O(lg n)`
+
+```Java
+HEAP-INCREASE-KEY(A,i,key)
+1   if key < A[i]
+2       error "new key is smaller than current key"
+3   A[i] = key
+4   while i > 1 and A[PARENT(i)] < A[i]
+5       exchange A[i] with A[PARENT(i)]
+6       i = PARENT(i)
+```
+* Kjøretid: `O(lg n)`
+
+```Java
+MAX-HEAP-INSERT(A, key)
+1   A.heap-size += 1
+2   A[A.heap-size] = - ∞
+3   HEAP-INCREASE-KEY(A, A.heap-size, key)
+```
+* Kjøretid: `O(lg n)`
+
+## Rotfestede trær - Kap. 12 Binary search trees
+### 12.1 Hva er et binary search tree 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 *Flere kilder*: https://www.baeldung.com/cs/binary-tree-max-heapify
