@@ -1,5 +1,33 @@
 markdown
-# Rotfaste trestrukturer 
+# 1 Problemer og algoritmer 
+# 2 Datastrukturer
+## Elementary Data Structure (10)
+## Stacks (10.1)
+## Queues (10.1)
+## Linked lists (10.2)
+### Searching a linked list (10.2)
+### Inserting into a linked list (10.2)
+### Deleting fram a linked list (10.2)
+### Sentienels (10.2)
+## Implementing pointes and objects (10.3)
+### A multiple-array representation of objects (10.3)
+### A single-array representation of object (10.3)
+### Allocation and freeing objects (10.3)
+## Hash table (11)
+### Direct-address tables (11.1)
+### Hash tables (11.2)
+### Analysis of hashing with chaining
+### Hash functions (11.3)
+### What makes a good hash function
+### Intrepreting keys as natural numbers
+### The division method
+### The multiplication method
+## Amortized analysis (17)
+### Dynamic tables (17.4)
+### Table expansion
+# 3 Splitt og hersk 
+# 4 Rangering i lineær tid 
+# 5 Rotfaste trestrukturer 
 ## Binære heap - Kap. 6 Heapsort
 Den binære heap datastrukturen er en liste som vi kan se på som et nesten komplett binærtre. Hver node i treet korresponderer til et element i listen. Treet er helt fylt i alle nivåer, med (mulig) unntak av det laveste nivået, som er fylt fra venstre mot høyre. 
 
@@ -159,7 +187,16 @@ MAX-HEAP-INSERT(A, key)
 * Kjøretid: `O(lg n)`
 
 ## Rotfestede trær - Kap. 12 Binary search trees
+
 ### 12.1 Hva er et binary search tree 
+
+# 7 Grådige algoritmer
+# 8 Traversering av grafer 
+# 9 Minnimale spenntrær
+# 10 Korteste vei fra én til alle
+# 11 Korteste vei fra alle til alle 
+# 12 Maksimal flyt 
+#
 
 
 
@@ -190,3 +227,7 @@ MAX-HEAP-INSERT(A, key)
 
 
 *Flere kilder*: https://www.baeldung.com/cs/binary-tree-max-heapify
+
+# Dynamisk programering 
+# Grådige algoritmer 
+# 
